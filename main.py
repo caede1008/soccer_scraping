@@ -15,7 +15,7 @@ sheetcnt = 1
 url = ''
 
 try:
-    for sheetcnt in range(1, 9):
+    for sheetcnt in range(1, 101):
         ws = wb[str(sheetcnt)]
         # エクセルからURLを取得
         url = ws['B1'].value
@@ -25,7 +25,7 @@ try:
         # ドライバー起動
         driver = webdriver.Chrome(r'C:/chromedriver')
         driver.get(url)
-        time.sleep(5)
+        time.sleep(3)
 
         # スクレイピング A1
         playername = driver.find_element(By.CLASS_NAME, "sc-bqWxrE.fxLCLd").text
@@ -47,11 +47,6 @@ try:
 
         leagues_games = driver.find_elements(By.XPATH,
                                              "//*[@id='__next']/div/main/div[1]/div/div[1]/div[3]/div/div[2]/div[1]/div/div[2]/*")
-
-        games = []
-        wkgames = driver.find_elements(By.CLASS_NAME, "sc-hLBbgP.sc-eDvSVe.jhoWjm.fRddxb")
-        for wkgame in wkgames:
-            games.append(wkgame.text)
 
         gamedates = []
         wkgamedates = driver.find_elements(By.CLASS_NAME, "sc-bqWxrE.gffDkV")
