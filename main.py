@@ -15,8 +15,11 @@ sheetcnt = 1
 url = ''
 
 try:
-    for sheetcnt in range(1, 101):
-        ws = wb[str(sheetcnt)]
+    sheetcnt = len(wb.worksheets)
+    if sheetcnt > 100:
+        raise Exception
+    for sheet in range (95, sheetcnt + 1):
+        ws = wb[str(sheet)]
         # エクセルからURLを取得
         url = ws['B1'].value
         if url == "":
@@ -84,18 +87,19 @@ try:
                 rates.append("")
 
         # A1エクセル書き込み
-        ws.cell(3, 2).value = club
-        ws.cell(4, 2).value = nationality
-        ws.cell(5, 2).value = year
-        ws.cell(6, 2).value = height
-        ws.cell(7, 2).value = foot
-        ws.cell(8, 2).value = position
-        ws.cell(9, 2).value = shirt_number
+        ws.cell(3, 2).value = playername
+        ws.cell(4, 2).value = club
+        ws.cell(5, 2).value = nationality
+        ws.cell(6, 2).value = year
+        ws.cell(7, 2).value = height
+        ws.cell(8, 2).value = foot
+        ws.cell(9, 2).value = position
+        ws.cell(10, 2).value = shirt_number
 
         # A2エクセル書き込み
         idxcnt = 0
         scoreidx = 0
-        rownumber = 11
+        rownumber = 12
         for league_game in leagues_games:
             type = league_game.get_attribute("class")
             # リーグの場合
