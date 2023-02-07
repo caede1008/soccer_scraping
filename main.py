@@ -18,7 +18,7 @@ try:
     sheetcnt = len(wb.worksheets)
     if sheetcnt > 100:
         raise Exception
-    for sheet in range (95, sheetcnt + 1):
+    for sheet in range (1, sheetcnt + 1):
         ws = wb[str(sheet)]
         # エクセルからURLを取得
         url = ws['B1'].value
